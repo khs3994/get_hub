@@ -5,10 +5,10 @@ import com.example.domain.model.DomainUserRepo
 
 object RepoMapper {
     fun repoMapper(
-        dataResponse: DataUserRepo?
-    ): DomainUserRepo? {
+        dataResponse: List<DataUserRepo>?
+    ): List<DomainUserRepo>? {
         return if (dataResponse != null) {
-            DomainUserRepo(
+            List<DomainUserRepo>(
                 name = dataResponse.name,
                 id = dataResponse.id,
                 date = dataResponse.date,

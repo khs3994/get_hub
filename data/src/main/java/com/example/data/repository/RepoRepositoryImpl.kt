@@ -13,7 +13,7 @@ class RepoRepositoryImpl @Inject constructor(
     override suspend fun githubRepo(
         remoteErrorEmitter: RemoteErrorEmitter,
         userid: String
-    ): DomainUserRepo? {
+    ): List<DomainUserRepo>? {
         return RepoMapper.repoMapper(repoDataSource.githubRepo(remoteErrorEmitter, userid))
     }
 }

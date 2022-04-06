@@ -7,5 +7,5 @@ interface RepoDataSource {
     suspend fun githubRepo(
         remoteErrorEmitter: RemoteErrorEmitter,
         userid: String
-    ): DataUserRepo?
+    ): List<DataUserRepo>?
 }

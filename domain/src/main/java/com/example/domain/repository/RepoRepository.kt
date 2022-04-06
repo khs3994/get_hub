@@ -7,5 +7,5 @@ interface RepoRepository {
     suspend fun githubRepo(
         remoteErrorEmitter: RemoteErrorEmitter,
         userid: String
-    ): DomainUserRepo?
+    ): List<DomainUserRepo>?
 }

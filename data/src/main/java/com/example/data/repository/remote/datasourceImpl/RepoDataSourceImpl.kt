@@ -12,7 +12,7 @@ class RepoDataSourceImpl constructor(
     override suspend fun githubRepo(
         remoteErrorEmitter: RemoteErrorEmitter,
         userid: String
-    ): DataUserRepo? {
+    ): List<DataUserRepo>?{
         return safeApiCall(remoteErrorEmitter) {
             githubApi.getUserRepo(owner = userid)
         }?.body()

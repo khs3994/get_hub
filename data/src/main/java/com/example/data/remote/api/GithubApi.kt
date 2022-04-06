@@ -11,5 +11,5 @@ interface GithubApi {
     suspend fun getUserInfo(@Path("owner") owner: String): Response<DataUserInfo>
 
     @GET("/users/{owner}/repos")
-    suspend fun getUserRepo(@Path("owner") owner: String): Response<DataUserRepo>
+    suspend fun getUserRepo(@Path("owner") owner: String): Response<List<DataUserRepo>>
 }
