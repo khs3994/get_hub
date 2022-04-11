@@ -22,7 +22,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     fun goResult(view: View) {
         binding.progressBar.visibility = View.VISIBLE
         mainViewModel.githubInfo(binding.userIdEdittext.text.toString())
-        this.findNavController().navigate(R.id.action_searchFragment_to_resultFragment)
     }
 
     private fun observeViewModel(){
