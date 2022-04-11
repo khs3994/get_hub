@@ -1,9 +1,7 @@
 package com.example.get_hub.di
 
 import com.example.domain.repository.InfoRepository
-import com.example.domain.repository.RepoRepository
 import com.example.domain.usecase.GithubInfoUseCase
-import com.example.domain.usecase.GithubRepoUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +14,4 @@ class UseCaseModule {
     @Provides
     @Singleton
     fun provideGithubInfoUseCase(repository: InfoRepository) = GithubInfoUseCase(repository)
-
-    @Provides
-    @Singleton
-    fun provideGithubRepoUseCase(repository: RepoRepository) = GithubRepoUseCase(repository)
 }

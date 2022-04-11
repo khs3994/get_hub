@@ -2,9 +2,7 @@ package com.example.get_hub.di
 
 import com.example.data.remote.api.GithubApi
 import com.example.data.repository.remote.datasource.InfoDataSource
-import com.example.data.repository.remote.datasource.RepoDataSource
 import com.example.data.repository.remote.datasourceImpl.InfoDataSourceImpl
-import com.example.data.repository.remote.datasourceImpl.RepoDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,13 +24,4 @@ class DataSourceModule {
         )
     }
 
-    @Provides
-    @Singleton
-    fun provideRepoDataSource (
-        githubApi: GithubApi,
-    ): RepoDataSource{
-        return RepoDataSourceImpl(
-            githubApi
-        )
-    }
 }

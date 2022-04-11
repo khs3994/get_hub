@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.DomainUserInfo
-import com.example.domain.model.DomainUserRepo
 import com.example.domain.usecase.GithubInfoUseCase
-import com.example.domain.usecase.GithubRepoUseCase
 import com.example.domain.utils.ErrorType
 import com.example.domain.utils.RemoteErrorEmitter
 import com.example.domain.utils.ScreenState
@@ -18,14 +16,12 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val githubInfoUseCase: GithubInfoUseCase,
-    private val githubRepoUseCase: GithubRepoUseCase,
 ) : ViewModel(), RemoteErrorEmitter {
 
     val apiCallEvent: LiveData<ScreenState> get() = _apiCallEvent
     private val _apiCallEvent = SingleLiveEvent<ScreenState>()
 
     var apiInfoCallResult = DomainUserInfo("", 0, 0)
-    var apiRepoCallResult = DomainUserRepo("", "", "", "")
 
     //에러타입
     var apiErrorType = ErrorType.UNKNOWN
@@ -37,17 +33,6 @@ class MainViewModel @Inject constructor(
         githubInfoUseCase.execute(this@MainViewModel, userId).let { response ->
             if (response != null) {
                 apiInfoCallResult = response
-                _apiCallEvent.postValue(ScreenState.LOADING)
-            } else _apiCallEvent.postValue(ScreenState.ERROR)
-        }
-    }
-
-
-    //깃허브 유저 레포
-    fun githubRepo(userId: String) = viewModelScope.launch {
-        githubRepoUseCase.execute(this@MainViewModel, userId).let { response ->
-            if (response != null) {
-                apiRepoCallResult = response
                 _apiCallEvent.postValue(ScreenState.LOADING)
             } else _apiCallEvent.postValue(ScreenState.ERROR)
         }
